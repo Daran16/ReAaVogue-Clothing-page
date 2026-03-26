@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReAa Vogue - Premium Fashion Store</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <a href="#" onclick="showPage('home')">
+                    <span class="logo-text">ReAa Vogue</span>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
+                <a href="#" onclick="filterByCategory('womens-ethnic')" class="nav-link">Women's Ethnic</a>
+                <a href="#" onclick="filterByCategory('womens-western')" class="nav-link">Women's Western</a>
+                <a href="#" onclick="filterByCategory('mens-wear')" class="nav-link">Men's Wear</a>
+                <a href="#" onclick="filterByCategory('kids')" class="nav-link">Kids</a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search for products..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="nav-icons">
+                <a href="https://www.instagram.com/reaa_vogue" target="_blank" class="nav-icon" title="Follow us on Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <div class="nav-icon" onclick="showPage('wishlist')">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </div>
+                <div class="nav-icon" onclick="showPage('cart')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </div>
+                <div class="nav-icon mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HOME PAGE -->
+        <section id="homePage" class="page active">
+
+            <!-- Hero Banner -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Luxury Fashion Redefined</h1>
+                    <p class="hero-subtitle">Where Elegance Meets Tradition</p>
+                    <button class="hero-btn" onclick="filterByCategory('womens-ethnic')">Explore Collection</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200" alt="Fashion Banner" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Category Cards -->
+            <div class="container">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterByCategory('womens-ethnic')">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600" alt="Women's Ethnic">
+                        <div class="category-overlay">
+                            <h3>Women's Ethnic</h3>
+                            <p>Sarees, Kurtis, Lehengas</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('womens-western')">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Women's Western">
+                        <div class="category-overlay">
+                            <h3>Women's Western</h3>
+                            <p>Tops, Jeans, Dresses</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('mens-wear')">
+                        <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600" alt="Men's Wear">
+                        <div class="category-overlay">
+                            <h3>Men's Wear</h3>
+                            <p>Shirts, Kurtas, Blazers</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('kids')">
+                        <img src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=600" alt="Kids">
+                        <div class="category-overlay">
+                            <h3>Kids</h3>
+                            <p>Boys & Girls Fashion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products -->
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="product-grid" id="featuredProducts">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Lookbook Section -->
+            <div class="container">
+                <h2 class="section-title">Instagram Lookbook</h2>
+                <div class="lookbook-grid">
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500" alt="Look 1">
+                    </div>
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=500" alt="Look 2">
+                    </div>
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500" alt="Look 3">
+                    </div>
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500" alt="Look 4">
+                    </div>
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=500" alt="Look 5">
+                    </div>
+                    <div class="lookbook-item">
+                        <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=500" alt="Look 6">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PRODUCT LISTING PAGE -->
+        <section id="productListingPage" class="page">
+            <div class="container">
+                <div class="listing-header">
+                    <h2 id="categoryTitle">All Products</h2>
+                    <div class="filter-controls">
+                        <button class="filter-btn" onclick="toggleFilters()">
+                            <i class="fas fa-filter"></i> Filters
+                        </button>
+                    </div>
+                </div>
+
+                <div class="listing-layout">
+                    <!-- Sidebar Filters -->
+                    <aside class="filters-sidebar" id="filtersSidebar">
+                        <div class="filter-section">
+                            <h3>Categories</h3>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="all" checked onchange="applyFilters()">
+                                <span>All Products</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="womens-ethnic" onchange="applyFilters()">
+                                <span>Women's Ethnic</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="womens-western" onchange="applyFilters()">
+                                <span>Women's Western</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="mens-wear" onchange="applyFilters()">
+                                <span>Men's Wear</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="kids" onchange="applyFilters()">
+                                <span>Kids</span>
+                            </label>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3>Price Range</h3>
+                            <label class="filter-option">
+                                <input type="checkbox" value="0-1000" onchange="applyFilters()">
+                                <span>Under ₹1,000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="1000-3000" onchange="applyFilters()">
+                                <span>₹1,000 - ₹3,000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="3000-5000" onchange="applyFilters()">
+                                <span>₹3,000 - ₹5,000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="5000-99999" onchange="applyFilters()">
+                                <span>Above ₹5,000</span>
+                            </label>
+                        </div>
+                    </aside>
+
+                    <!-- Products Grid -->
+                    <div class="products-main">
+                        <div class="product-grid" id="productGrid">
+                            <!-- Products will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT DETAIL PAGE -->
+        <section id="productDetailPage" class="page">
+            <div class="container">
+                <div class="product-detail-layout">
+                    <!-- Product Images -->
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img id="mainProductImage" src="" alt="Product">
+                        </div>
+                        <div class="thumbnail-images" id="thumbnailImages">
+                            <!-- Thumbnails will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-info">
+                        <h1 id="productName">Product Name</h1>
+                        <div class="product-price">
+                            <span class="current-price" id="productPrice">₹0</span>
+                            <span class="original-price" id="productOriginalPrice">₹0</span>
+                            <span class="discount" id="productDiscount">0% OFF</span>
+                        </div>
+
+                        <div class="product-description">
+                            <h3>Description</h3>
+                            <p id="productDescription">Product description will appear here.</p>
+                        </div>
+
+                        <div class="product-options">
+                            <div class="option-group">
+                                <label>Select Size</label>
+                                <div class="size-options" id="sizeOptions">
+                                    <!-- Sizes will be loaded dynamically -->
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label>Quantity</label>
+                                <div class="quantity-selector">
+                                    <button onclick="updateQuantity(-1)">-</button>
+                                    <input type="number" id="quantityInput" value="1" min="1" readonly>
+                                    <button onclick="updateQuantity(1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-primary" onclick="addToCartFromDetail()">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </button>
+                            <button class="btn-secondary" onclick="toggleWishlistFromDetail()">
+                                <i class="far fa-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+
+                        <!-- Customer Reviews Section -->
+                        <div class="reviews-section">
+                            <h3>Customer Reviews</h3>
+                            <div class="review-item">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="review-text">"Excellent quality and perfect fit. Highly recommended!"</p>
+                                <p class="review-author">- Priya Sharma</p>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Beautiful product. Worth every penny."</p>
+                                <p class="review-author">- Anjali Reddy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CART PAGE -->
+        <section id="cartPage" class="page">
+            <div class="container">
+                <h2 class="page-title">Shopping Cart</h2>
+
+                <div id="emptyCart" class="empty-state" style="display: none;">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some products to get started</p>
+                    <button class="btn-primary" onclick="showPage('home')">Continue Shopping</button>
+                </div>
+
+                <div id="cartContent" class="cart-layout">
+                    <div class="cart-items">
+                        <div id="cartItemsList">
+                            <!-- Cart items will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount</span>
+                            <span id="cartDiscount" class="discount-text">-₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span class="free-text">FREE</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="cartTotal">₹0</span>
+                        </div>
+                        <button class="btn-checkout" onclick="proceedToCheckout()">
+                            Place Order via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISHLIST PAGE -->
+        <section id="wishlistPage" class="page">
+            <div class="container">
+                <h2 class="page-title">My Wishlist</h2>
+
+                <div id="emptyWishlist" class="empty-state" style="display: none;">
+                    <i class="far fa-heart"></i>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Save your favorite items here</p>
+                    <button class="btn-primary" onclick="showPage('home')">Continue Shopping</button>
+                </div>
+
+                <div class="product-grid" id="wishlistGrid">
+                    <!-- Wishlist items will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ReAa Vogue</h3>
+                    <p>Your destination for premium ethnic and western fashion. Quality, style, and elegance in every piece.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/reaa_vogue" target="_blank" title="ReAa Vogue Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/duke_nd_dash" target="_blank" title="Duke & Dash Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/918754578463?text=Hello%20ReAa%20Vogue%2C%20I%27m%20interested%20in%20your%20products." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="filterByCategory('womens-ethnic')">Women's Collection</a></li>
+                        <li><a href="#" onclick="filterByCategory('mens-wear')">Men's Collection</a></li>
+                        <li><a href="#" onclick="filterByCategory('kids')">Kids Collection</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchange</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+918754578463" style="color: inherit; text-decoration: none;">+91 87545 78463</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@reaavogue.com" style="color: inherit; text-decoration: none;">info@reaavogue.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ReAa Vogue. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918754578463?text=Hello%20ReAa%20Vogue%2C%20I%27m%20interested%20in%20your%20products."
+       class="whatsapp-float"
+       target="_blank"
+       title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
